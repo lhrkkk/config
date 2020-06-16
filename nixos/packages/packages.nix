@@ -2,7 +2,9 @@ self: super:
 
 let
   dirContents = builtins.readDir ./.;
-  isSoftware = name: dirContents.${name} == "directory";
+  isSoftware = name:
+    dirContents.${name} == "directory"
+    && builtins.match "_.*" name == null;
 
   genSoftware = name:
     {

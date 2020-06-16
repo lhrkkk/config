@@ -27,9 +27,11 @@ self: super:
       # hmcl
       jq
       ksshaskpass
+      ktimetracker
       libarchive
       lrzsz
       # mathematica
+      mono
       obs-studio
       okular
       osu-lazer

@@ -1,0 +1,37 @@
+diff -r -p1 -u source.orig/exfat_oal.c source/exfat_oal.c
+--- source.orig/exfat_oal.c	2020-06-16 12:15:09.154955604 +0800
++++ source/exfat_oal.c	2020-06-16 12:15:47.359878159 +0800
+@@ -123,3 +123,3 @@ extern struct timezone sys_tz;
+ /* Linear day numbers of the respective 1sts in non-leap years. */
+-static time_t accum_days_in_year[] = {
++static ktime_t accum_days_in_year[] = {
+ 	/* Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec */
+@@ -135,3 +135,3 @@ TIMESTAMP_T *tm_current(TIMESTAMP_T *tp)
+ #endif
+-	time_t second, day, leap_day, month, year;
++	ktime_t second, day, leap_day, month, year;
+ 
+diff -r -p1 -u source.orig/exfat_super.c source/exfat_super.c
+--- source.orig/exfat_super.c	2020-06-16 12:15:09.154955604 +0800
++++ source/exfat_super.c	2020-06-16 12:15:29.746341146 +0800
+@@ -146,3 +146,3 @@ extern struct timezone sys_tz;
+ /* Linear day numbers of the respective 1sts in non-leap years. */
+-static time_t accum_days_in_year[] = {
++static ktime_t accum_days_in_year[] = {
+ 	/* Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec */
+@@ -157,4 +157,4 @@ void exfat_time_fat2unix(struct exfat_sb
+ {
+-	time_t year = tp->Year;
+-	time_t ld;
++	ktime_t year = tp->Year;
++	ktime_t ld;
+ 
+@@ -176,5 +176,5 @@ void exfat_time_unix2fat(struct exfat_sb
+ {
+-	time_t second = ts->tv_sec;
+-	time_t day, month, year;
+-	time_t ld;
++	ktime_t second = ts->tv_sec;
++	ktime_t day, month, year;
++	ktime_t ld;
+ 
